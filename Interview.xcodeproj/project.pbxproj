@@ -16,11 +16,11 @@
 		AA6D4C6C2D5A7BBF003096F9 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D4C502D5A7BBF003096F9 /* HTTPClient.swift */; };
 		AA6D4C6D2D5A7BBF003096F9 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D4C512D5A7BBF003096F9 /* URLSessionHTTPClient.swift */; };
 		AA6D4C6E2D5A7BBF003096F9 /* ListContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D4C532D5A7BBF003096F9 /* ListContactsViewModel.swift */; };
+		AA6D4C6F2D5A7BBF003096F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D4C662D5A7BBF003096F9 /* SceneDelegate.swift */; };
 		AA6D4C702D5A7BBF003096F9 /* ContactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D4C562D5A7BBF003096F9 /* ContactService.swift */; };
 		AA6D4C712D5A7BBF003096F9 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D4C582D5A7BBF003096F9 /* ContactCell.swift */; };
 		AA6D4C722D5A7BBF003096F9 /* ListContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D4C592D5A7BBF003096F9 /* ListContactsViewController.swift */; };
 		AA6D4C732D5A7BBF003096F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D4C622D5A7BBF003096F9 /* AppDelegate.swift */; };
-		AA6D4C6F2D5A7BBF003096F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D4C662D5A7BBF003096F9 /* SceneDelegate.swift */; };
 		AA6D4C7E2D5A7BBF003096F9 /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D4C742D5A7BBF003096F9 /* Fixture.swift */; };
 		AA6D4C7F2D5A7BBF003096F9 /* ListContactServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D4C762D5A7BBF003096F9 /* ListContactServiceTests.swift */; };
 		AA6D4C802D5A7BBF003096F9 /* ListContactViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D4C782D5A7BBF003096F9 /* ListContactViewModelTests.swift */; };
@@ -468,7 +468,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -526,7 +526,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -587,7 +587,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = InterviewTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -607,7 +607,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = InterviewTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
