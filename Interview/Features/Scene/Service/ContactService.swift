@@ -40,10 +40,7 @@ extension ContactService: ListcontactResultLoader {
 public enum ContactMapper {
     private static var OK_200: Int { 200 }
 
-    internal static func map(
-        _ data: Data,
-        from response: HTTPURLResponse) -> ContactService.Result {
-            
+    internal static func map(_ data: Data, from response: HTTPURLResponse) -> ContactService.Result {
         guard response.statusCode == OK_200,
               let contact = try? JSONDecoder().decode([Contact].self, from: data) else {
             return .failure(Error.invalidResponse)
