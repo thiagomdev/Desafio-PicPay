@@ -60,31 +60,31 @@ final class ListContactServiceTests: XCTestCase {
     func test_load_delivers_no_items_on_200HTTPResponse_with_empty_json_list() {
         let  (sut, mock) = makeSut()
         
-        expect(sut, toCompleteWith: failure(.invalidResponse), when: {
+        expect(sut, toCompleteWith: .success([]), when: {
             let emptyJSON = makeItemsJSON([])
             mock.complete(withStatusCode: 200, data: emptyJSON)
         })
     }
-    
-    func test_load_contacts_on_200HTTPResponse_with_json_items() {
+
+    func test_load_delivers_contacts_on_200HTTPResponse_with_json_items() {
         let  (sut, mock) = makeSut()
-        let data = Data()
-        if let contact = try? JSONDecoder().decode([Contact].self, from: data) {
-            expect(sut, toCompleteWith: .success(contact), when: {
-                let json = makeItemsJSON([])
-                mock.complete(withStatusCode: 200, data: json)
-            })
-        }
+        let item1 = makeItem(id: 1, name: "a name", photoURL: "https://a-url.com")
+        let item2 = makeItem(id: 2, name: "another name", photoURL: "https://another-url.com")
+
+        expect(sut, toCompleteWith: .success([item1.model, item2.model]), when: {
+            let json = makeItemsJSON([item1.json, item2.json])
+            mock.complete(withStatusCode: 200, data: json)
+        })
     }
     
     func test_load_does_not_deliver_result_after_SUT_instance_has_been_deallocated() {
         let (sut, mock) = makeSut()
-        
+
         var capturedResults = [ContactService.Result]()
         sut.loadMovies { capturedResults.append($0) }
-        
+
         mock.complete(withStatusCode: 200, data: makeItemsJSON([]))
-        
+
         XCTAssertFalse(capturedResults.isEmpty)
     }
 }
@@ -122,8 +122,8 @@ extension ListContactServiceTests {
         }
             
         execute()
-        
-        wait(for: [exp], timeout: 1.0)
+            
+        waitForExpectations(timeout: 1.0)
     }
     
     private func failure(_ error: Error) -> ContactService.Result {
@@ -131,8 +131,7 @@ extension ListContactServiceTests {
     }
  
     private func makeItemsJSON(_ items: [[String: Any]]) -> Data {
-        let json = ["contacts": items]
-        return try! JSONSerialization.data(withJSONObject: json)
+        return try! JSONSerialization.data(withJSONObject: items)
     }
     
     private final class HTTPClientMock: HTTPClient {
@@ -180,20 +179,5 @@ extension ListContactServiceTests {
     
     private var anyURL: URL {
         URL(string: "https://669ff1b9b132e2c136ffa741.mockapi.io/picpay/ios/interview/contacts")!
-    }
-    
-    private func trackForMemoryLeaks(for
-        instance: AnyObject,
-        file: StaticString = #file,
-        line: UInt = #line) {
-            
-        addTeardownBlock { [weak instance] in
-            XCTAssertNil(
-                instance,
-                "Instance should have been deallocated. Potential memory leak.",
-                file: file,
-                line: line
-            )
-        }
     }
 }

@@ -7,10 +7,7 @@ public final class URLSessionHTTPClient: HTTPClient {
         self.session = session
     }
         
-    public func perform(
-        _ request: URLRequest,
-        completion: @escaping (HTTPClientResult) -> Void) {
-            
+    public func perform(_ request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
         session.dataTask(with: request) { data, response, error in
             if error != nil {
                 completion(.failure(Error.invalidURL))

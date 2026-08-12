@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA4CBDE43027E41C00BADF6C /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4CBDE33027E41800BADF6C /* Tracker.swift */; };
 		AA6D4C652D5A7BBF003096F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA6D4C5D2D5A7BBF003096F9 /* Assets.xcassets */; };
 		AA6D4C672D5A7BBF003096F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA6D4C602D5A7BBF003096F9 /* LaunchScreen.storyboard */; };
 		AA6D4C682D5A7BBF003096F9 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D4C492D5A7BBF003096F9 /* Contact.swift */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		6AB24DBC23EB546D00530BA5 /* Interview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Interview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AB24DD223EB546F00530BA5 /* InterviewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InterviewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA4CBDE33027E41800BADF6C /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		AA6D4C492D5A7BBF003096F9 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		AA6D4C4A2D5A7BBF003096F9 /* UserIdsLegacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIdsLegacy.swift; sourceTree = "<group>"; };
 		AA6D4C4C2D5A7BBF003096F9 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 		AA6D4C752D5A7BBF003096F9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				AA4CBDE33027E41800BADF6C /* Tracker.swift */,
 				AA6D4C742D5A7BBF003096F9 /* Fixture.swift */,
 			);
 			path = Helpers;
@@ -387,6 +390,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA4CBDE43027E41C00BADF6C /* Tracker.swift in Sources */,
 				AA6D4C7E2D5A7BBF003096F9 /* Fixture.swift in Sources */,
 				AA6D4C7F2D5A7BBF003096F9 /* ListContactServiceTests.swift in Sources */,
 				AA6D4C802D5A7BBF003096F9 /* ListContactViewModelTests.swift in Sources */,
