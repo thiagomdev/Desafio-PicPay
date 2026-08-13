@@ -6,5 +6,5 @@ public enum HTTPClientResult {
 }
 
 public protocol HTTPClient {
-    func perform(_ request: URLRequest, completion: @escaping (HTTPClientResult) -> Void)
+    func execute(_ request: URLRequest) async throws -> HTTPClientResult
 }

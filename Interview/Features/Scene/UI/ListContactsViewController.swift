@@ -37,12 +37,19 @@ public final class ListContactsViewController: UIViewController {
         super.viewDidLoad()
         title = "Lista de Contatos"
         configureViews()
+        
+        Task {
+            do {
+                try await loadData()
+            } catch {
+                show(alert: "Hey you!", message: error.localizedDescription)
+            }
+        }
     }
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.setDelegate = self
-        loadData()
     }
 }
 
@@ -64,15 +71,16 @@ extension ListContactsViewController: ViewModelDelegate  {
 }
 
 extension ListContactsViewController {
-    private func loadData() {
-        viewModel.displayMovies { [weak self] result in
+    @MainActor
+    private func loadData() async throws {
+        if let result = try await viewModel.displayMovies() {
             switch result {
-            case let .success(contacts):
-                self?.viewModel.model.insert(contacts)
-                self?.activity.stopAnimating()
-                self?.tableView.reloadData()
+                case let .success(contacts):
+                self.viewModel.model.insert(contacts)
+                self.activity.stopAnimating()
+                self.tableView.reloadData()
             case let .failure(error):
-                self?.show(alert: "Hey you!", message: error.localizedDescription)
+                self.show(alert: "Hey you!", message: error.localizedDescription)
             }
         }
     }

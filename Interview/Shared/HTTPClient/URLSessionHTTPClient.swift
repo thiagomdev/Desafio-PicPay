@@ -6,17 +6,13 @@ public final class URLSessionHTTPClient: HTTPClient {
     public init(session: URLSession = .shared) {
         self.session = session
     }
-        
-    public func perform(_ request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
-        session.dataTask(with: request) { data, response, error in
-            if error != nil {
-                completion(.failure(Error.invalidURL))
-            } else if let data = data,
-                let response = response as? HTTPURLResponse {
-                completion(.success(data, response))
-            } else {
-                completion(.failure(Error.invalidData))
-            }
-        }.resume()
+    
+    public func execute(_ request: URLRequest) async throws -> HTTPClientResult {
+        let (data, response) = try await session.data(for: request)
+        if let response = response as? HTTPURLResponse {
+            return .success(data, response)
+        } else {
+            return .failure(.invalidData)
+        }
     }
 }

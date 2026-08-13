@@ -10,7 +10,7 @@ public protocol ListContactsViewModelProtocol {
     var model: Set<[Contact]> { get set }
     func isLegacy(index: IndexPath)
     var setDelegate: ViewModelDelegate? { get set }
-    func displayMovies(callback: @escaping (ContactResult) -> Void)
+    func displayMovies() async throws -> ContactResult?
 }
 
 public protocol ViewModelDelegate: AnyObject {
@@ -45,17 +45,8 @@ extension ListContactsViewModel: ListContactsViewModelProtocol {
         getContactInformation(basedOn: index)
     }
     
-    public func displayMovies(callback: @escaping (ContactResult) -> Void) {
-        service.loadMovies { result in
-            DispatchQueue.main.async {
-                switch result {
-                case let .success(contact):
-                    callback(.success(contact))
-                case let .failure(error):
-                    callback(.failure(error))
-                }
-            }
-        }
+    public func displayMovies() async throws -> ContactResult? {
+        try await service.loadMovies()
     }
     
     private func getContactInformation(basedOn contact: IndexPath) {
