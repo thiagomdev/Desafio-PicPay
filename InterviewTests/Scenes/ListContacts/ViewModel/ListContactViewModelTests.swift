@@ -3,23 +3,25 @@ import Interview
 
 final class ListContactViewModelTests: XCTestCase {
     func test_loadContacts_success() async throws {
-        let (sut, viewModelSpy, _) = makeSut()
+        let (sut, doubles) = makeSut()
         let contact: [Contact] = [.fixture(id: 0, name: "Shakira")]
-        viewModelSpy.expected = .success(contact)
+        doubles.viewModelSpy.expected = .success(contact)
 
         let result = try await sut.displayMovies()
 
         if case let .success(contacts) = result {
-            XCTAssertEqual(contacts.first?.name, "Shakira")
-            XCTAssertEqual(contacts.first?.id, 0)
+            XCTAssertTrue(doubles.viewModelSpy.loadMoviesCalled, "Should call the service to load contacts")
+            XCTAssertEqual(doubles.viewModelSpy.loadMoviesCount, 1, "Should call the service exactly once")
+            XCTAssertEqual(contacts.first?.name, "Shakira", "Should return the contact name from the service")
+            XCTAssertEqual(contacts.first?.id, 0, "Should return the contact id from the service")
         } else {
             XCTFail("Expected success result")
         }
     }
 
     func test_loadContacts_failure() async throws {
-        let (sut, viewModelSpy, _) = makeSut()
-        viewModelSpy.expected = .failure(.invalidData)
+        let (sut, doubles) = makeSut()
+        doubles.viewModelSpy.expected = .failure(.invalidData)
 
         let result = try await sut.displayMovies()
 
@@ -31,16 +33,31 @@ final class ListContactViewModelTests: XCTestCase {
     }
 
     func test_is_not_legacy() {
-        let (sut, _, delegateSpy) = makeSut()
-        delegateSpy.notNotLegacyName = "Shakira"
+        let (sut, doubles) = makeSut()
+        let contact: [Contact] = [.fixture(id: 2, name: "Ana")]
+        sut.model.insert(contact)
 
         sut.isLegacy(index: IndexPath(row: 0, section: 0))
 
-        XCTAssertTrue(delegateSpy.notNotLegacy)
+        XCTAssertTrue(doubles.delegateSpy.notNotLegacy, "Should notify delegate that the contact is not legacy")
+        XCTAssertEqual(doubles.delegateSpy.notNotLegacyCount, 1, "Should notify delegate exactly once")
+        XCTAssertEqual(doubles.delegateSpy.notNotLegacyName, "Ana", "Should pass the correct contact name to the delegate")
+    }
+
+    func test_is_legacy() {
+        let (sut, doubles) = makeSut()
+        let contact: [Contact] = [.fixture(id: 10, name: "Shakira")]
+        sut.model.insert(contact)
+
+        sut.isLegacy(index: IndexPath(row: 0, section: 0))
+
+        XCTAssertTrue(doubles.delegateSpy.isLegacyCalled, "Should notify delegate that the contact is legacy")
+        XCTAssertEqual(doubles.delegateSpy.isLegacyCount, 1, "Should notify delegate exactly once")
+        XCTAssertEqual(doubles.delegateSpy.expectedName, "Shakira", "Should pass the correct contact name to the delegate")
     }
 
     func test_model() {
-        let (sut, _, _) = makeSut()
+        let (sut, _) = makeSut()
 
         let contacts: [Contact] = [
             .fixture(id: 0, name: "Zé"),
@@ -49,20 +66,20 @@ final class ListContactViewModelTests: XCTestCase {
 
         sut.model.insert(contacts)
 
-        XCTAssertEqual(sut.model.first?.count, 2)
-        XCTAssertEqual(sut.model.first?[0].name, "Zé")
-        XCTAssertEqual(sut.model.first?[1].name, "Ana")
-        XCTAssertEqual(sut.model.first?[0].id, 0)
-        XCTAssertEqual(sut.model.first?[1].id, 1)
+        XCTAssertEqual(sut.model.first?.count, 2, "Should insert both contacts into the model")
+        XCTAssertEqual(sut.model.first?[0].name, "Zé", "Should keep the first contact's name")
+        XCTAssertEqual(sut.model.first?[1].name, "Ana", "Should keep the second contact's name")
+        XCTAssertEqual(sut.model.first?[0].id, 0, "Should keep the first contact's id")
+        XCTAssertEqual(sut.model.first?[1].id, 1, "Should keep the second contact's id")
     }
 }
 
 extension ListContactViewModelTests {
+    private typealias Doubles = (viewModelSpy: ListContactViewModelSpy, delegateSpy: DelegateSpy)
+    
     private func makeSut(file: StaticString = #file, line: UInt = #line) -> (
-        sut: ListContactsViewModel,
-        viewModelSpy: ListContactViewModelSpy,
-        delegateSpy: DelegateSpy
-    ) {
+        sut: ListContactsViewModel, doubles: Doubles) {
+            
         let viewModelSpy = ListContactViewModelSpy()
         let delegateSpy = DelegateSpy()
         let sut = ListContactsViewModel(service: viewModelSpy)
@@ -72,32 +89,41 @@ extension ListContactViewModelTests {
         trackForMemoryLeaks(for: viewModelSpy, file: file, line: line)
         trackForMemoryLeaks(for: delegateSpy, file: file, line: line)
 
-        return (sut, viewModelSpy, delegateSpy)
+        return (sut, (viewModelSpy, delegateSpy))
     }
+}
 
-    private final class ListContactViewModelSpy: ListcontactResultLoader {
-        var expected: ContactResult?
+final class ListContactViewModelSpy: ListcontactResultLoader {
+    var expected: ContactResult?
 
-        func loadMovies() async throws -> ContactResult {
-            return expected ?? .failure(.invalidData)
-        }
+    private(set) var loadMoviesCalled: Bool = false
+    private(set) var loadMoviesCount: Int = 0
+    
+    func loadMovies() async throws -> ContactResult {
+        loadMoviesCalled = true
+        loadMoviesCount += 1
+        return expected ?? .failure(.invalidData)
     }
 }
 
 final class DelegateSpy: ViewModelDelegate {
-    var isLegacyCalled: Bool = false
-    var notNotLegacy: Bool = false
-
+    private(set) var isLegacyCalled: Bool = false
+    private(set) var isLegacyCount: Int = 0
     var expectedName: String?
+    
+    private(set) var notNotLegacy: Bool = false
+    private(set) var notNotLegacyCount: Int = 0
     var notNotLegacyName: String?
 
     func isLegacy(name: String) {
-        expectedName = name
         isLegacyCalled = true
+        isLegacyCount += 1
+        expectedName = name
     }
 
     func notNotLegacy(name: String) {
-        notNotLegacyName = name
         notNotLegacy = true
+        notNotLegacyCount += 1
+        notNotLegacyName = name
     }
 }

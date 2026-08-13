@@ -71,7 +71,6 @@ extension ListContactsViewController: ViewModelDelegate  {
 }
 
 extension ListContactsViewController {
-    @MainActor
     private func loadData() async throws {
         if let result = try await viewModel.displayMovies() {
             switch result {
@@ -124,7 +123,7 @@ extension ListContactsViewController {
             )
         
         UIView.animate(
-            withDuration: 0.9,
+            withDuration: 0.6,
             delay: .zero * Double(indexPath.row),
             usingSpringWithDamping: 0.9,
             initialSpringVelocity: 0.9,
