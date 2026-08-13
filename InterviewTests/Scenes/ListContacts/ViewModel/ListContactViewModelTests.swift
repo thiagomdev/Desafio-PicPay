@@ -2,7 +2,7 @@ import XCTest
 import Interview
 
 final class ListContactViewModelTests: XCTestCase {
-    func test_loadContacts_success() async throws {
+    func test_displayMovies_whenServiceSucceeds_returnsContacts() async throws {
         let (sut, doubles) = makeSut()
         let contact: [Contact] = [.fixture(id: 0, name: "Shakira")]
         doubles.viewModelSpy.expected = .success(contact)
@@ -19,7 +19,7 @@ final class ListContactViewModelTests: XCTestCase {
         }
     }
 
-    func test_loadContacts_failure() async throws {
+    func test_displayMovies_whenServiceFails_returnsFailure() async throws {
         let (sut, doubles) = makeSut()
         doubles.viewModelSpy.expected = .failure(.invalidData)
 
@@ -32,7 +32,7 @@ final class ListContactViewModelTests: XCTestCase {
         }
     }
 
-    func test_is_not_legacy() {
+    func test_isLegacy_whenContactIsNotInLegacyList_notifiesDelegateAsNotLegacy() {
         let (sut, doubles) = makeSut()
         let contact: [Contact] = [.fixture(id: 2, name: "Ana")]
         sut.model.insert(contact)
@@ -44,7 +44,7 @@ final class ListContactViewModelTests: XCTestCase {
         XCTAssertEqual(doubles.delegateSpy.notNotLegacyName, "Ana", "Should pass the correct contact name to the delegate")
     }
 
-    func test_is_legacy() {
+    func test_isLegacy_whenContactIsInLegacyList_notifiesDelegateAsLegacy() {
         let (sut, doubles) = makeSut()
         let contact: [Contact] = [.fixture(id: 10, name: "Shakira")]
         sut.model.insert(contact)
@@ -56,7 +56,23 @@ final class ListContactViewModelTests: XCTestCase {
         XCTAssertEqual(doubles.delegateSpy.expectedName, "Shakira", "Should pass the correct contact name to the delegate")
     }
 
-    func test_model() {
+    func test_setDelegate_whenAssigned_isReturnedByGetter() {
+        let (sut, doubles) = makeSut()
+
+        XCTAssertTrue(sut.setDelegate === doubles.delegateSpy, "Should return the delegate that was assigned")
+    }
+
+    func test_isLegacy_whenModelIsEmpty_notifiesDelegateWithDefaultValues() {
+        let (sut, doubles) = makeSut()
+
+        sut.isLegacy(index: IndexPath(row: 0, section: 0))
+
+        XCTAssertTrue(doubles.delegateSpy.notNotLegacy, "Should notify delegate as not legacy when there is no contact for the given index")
+        XCTAssertEqual(doubles.delegateSpy.notNotLegacyCount, 1, "Should notify delegate exactly once")
+        XCTAssertEqual(doubles.delegateSpy.notNotLegacyName, "", "Should pass an empty name when no contact is found")
+    }
+
+    func test_model_whenInsertingContacts_storesAllContactsInOrder() {
         let (sut, _) = makeSut()
 
         let contacts: [Contact] = [
