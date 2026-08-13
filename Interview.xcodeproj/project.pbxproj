@@ -60,6 +60,7 @@
 		AA6D4C762D5A7BBF003096F9 /* ListContactServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContactServiceTests.swift; sourceTree = "<group>"; };
 		AA6D4C782D5A7BBF003096F9 /* ListContactViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContactViewModelTests.swift; sourceTree = "<group>"; };
 		AA6D4C7C2D5A7BBF003096F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAAC1478302DFB0100EEC4F6 /* Interview.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Interview.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +84,7 @@
 		6AB24DB323EB546D00530BA5 = {
 			isa = PBXGroup;
 			children = (
+				AAAC1478302DFB0100EEC4F6 /* Interview.xctestplan */,
 				AA6D4C642D5A7BBF003096F9 /* Interview */,
 				AA6D4C7D2D5A7BBF003096F9 /* InterviewTests */,
 				6AB24DBD23EB546D00530BA5 /* Products */,
