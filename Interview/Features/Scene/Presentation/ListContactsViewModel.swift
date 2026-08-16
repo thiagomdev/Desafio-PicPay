@@ -7,7 +7,7 @@ public enum Error: Swift.Error {
 }
 
 public protocol ListContactsViewModelProtocol {
-    var model: Set<[Contact]> { get set }
+    var model: [Contact] { get set }
     func isLegacy(index: IndexPath)
     var setDelegate: ViewModelDelegate? { get set }
     func displayMovies() async throws -> ContactResult?
@@ -18,10 +18,10 @@ public protocol ViewModelDelegate: AnyObject {
     func notNotLegacy(name: String)
 }
 
-public final class ListContactsViewModel {
+public actor ListContactsViewModel {
     private var legacy: UserIdsLegacy?
     private let service: ListcontactResultLoader
-    private var dataObject = Set<[Contact]>()
+    private var dataObject = [Contact]()
     
     private weak var delegate: ViewModelDelegate?
     
@@ -30,13 +30,13 @@ public final class ListContactsViewModel {
     }
 }
 
-extension ListContactsViewModel: ListContactsViewModelProtocol {
+extension ListContactsViewModel: @preconcurrency ListContactsViewModelProtocol {
     public var setDelegate: ViewModelDelegate? {
         get { delegate }
         set { delegate = newValue }
     }
     
-    public var model: Set<[Contact]> {
+    public var model: [Contact] {
         get { dataObject }
         set { dataObject = newValue }
     }
@@ -60,10 +60,10 @@ extension ListContactsViewModel: ListContactsViewModelProtocol {
     }
     
     private func didTapIndex(_ index: IndexPath) -> (id: Int, name: String) {
-        if let id = dataObject.first?[index.row].id,
-           let name = dataObject.first?[index.row].name {
-            return (id, name)
+        guard dataObject.indices.contains(index.row) else {
+            return (.zero, String())
         }
-        return (.zero, String())
+        let contact = dataObject[index.row]
+        return (contact.id, contact.name)
     }
 }

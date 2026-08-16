@@ -75,7 +75,7 @@ extension ListContactsViewController {
         if let result = try await viewModel.displayMovies() {
             switch result {
                 case let .success(contacts):
-                self.viewModel.model.insert(contacts)
+                self.viewModel.model.append(contentsOf: contacts)
                 self.activity.stopAnimating()
                 self.tableView.reloadData()
             case let .failure(error):
@@ -154,7 +154,7 @@ extension ListContactsViewController: UITableViewDataSource {
     public func tableView(
         _ tableView: UITableView,
         numberOfRowsInSection section: Int) -> Int {
-        viewModel.model.first?.count ?? .zero
+            viewModel.model.count
     }
     
     public func tableView(
@@ -164,7 +164,7 @@ extension ListContactsViewController: UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(
             withIdentifier: ContactCell.identifier,
             for: indexPath) as? ContactCell {
-            if let model = viewModel.model.first?[indexPath.row] {
+            if let model = viewModel.model.first(where: { $0.id == indexPath.row }) {
                 cell.setup(cell: model)
             }
             return cell

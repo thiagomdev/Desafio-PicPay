@@ -33,9 +33,9 @@ final class ListContactViewModelTests: XCTestCase {
     }
 
     func test_isLegacy_whenContactIsNotInLegacyList_notifiesDelegateAsNotLegacy() {
-        let (sut, doubles) = makeSut()
+        var (sut, doubles) = makeSut()
         let contact: [Contact] = [.fixture(id: 2, name: "Ana")]
-        sut.model.insert(contact)
+        sut.model.append(contentsOf: contact)
 
         sut.isLegacy(index: IndexPath(row: 0, section: 0))
 
@@ -45,9 +45,9 @@ final class ListContactViewModelTests: XCTestCase {
     }
 
     func test_isLegacy_whenContactIsInLegacyList_notifiesDelegateAsLegacy() {
-        let (sut, doubles) = makeSut()
+        var (sut, doubles) = makeSut()
         let contact: [Contact] = [.fixture(id: 10, name: "Shakira")]
-        sut.model.insert(contact)
+        sut.model.append(contentsOf: contact)
 
         sut.isLegacy(index: IndexPath(row: 0, section: 0))
 
@@ -73,39 +73,40 @@ final class ListContactViewModelTests: XCTestCase {
     }
 
     func test_model_whenInsertingContacts_storesAllContactsInOrder() {
-        let (sut, _) = makeSut()
+        var (sut, _) = makeSut()
 
         let contacts: [Contact] = [
             .fixture(id: 0, name: "Zé"),
             .fixture(id: 1, name: "Ana")
         ]
 
-        sut.model.insert(contacts)
+        sut.model.append(contentsOf: contacts)
 
-        XCTAssertEqual(sut.model.first?.count, 2, "Should insert both contacts into the model")
-        XCTAssertEqual(sut.model.first?[0].name, "Zé", "Should keep the first contact's name")
-        XCTAssertEqual(sut.model.first?[1].name, "Ana", "Should keep the second contact's name")
-        XCTAssertEqual(sut.model.first?[0].id, 0, "Should keep the first contact's id")
-        XCTAssertEqual(sut.model.first?[1].id, 1, "Should keep the second contact's id")
+        XCTAssertEqual(sut.model.count, 2, "Should insert both contacts into the model")
+        XCTAssertEqual(sut.model[0].name, "Zé", "Should keep the first contact's name")
+        XCTAssertEqual(sut.model[1].name, "Ana", "Should keep the second contact's name")
+        XCTAssertEqual(sut.model[0].id, 0, "Should keep the first contact's id")
+        XCTAssertEqual(sut.model[1].id, 1, "Should keep the second contact's id")
     }
 }
 
 extension ListContactViewModelTests {
     private typealias Doubles = (viewModelSpy: ListContactViewModelSpy, delegateSpy: DelegateSpy)
-    
+
     private func makeSut(file: StaticString = #file, line: UInt = #line) -> (
-        sut: ListContactsViewModel, doubles: Doubles) {
-            
+        sut: ListContactsViewModelProtocol, doubles: Doubles) {
+
         let viewModelSpy = ListContactViewModelSpy()
         let delegateSpy = DelegateSpy()
         let sut = ListContactsViewModel(service: viewModelSpy)
-        sut.setDelegate = delegateSpy
+        var protocolSut: ListContactsViewModelProtocol = sut
+        protocolSut.setDelegate = delegateSpy
 
         trackForMemoryLeaks(for: sut, file: file, line: line)
         trackForMemoryLeaks(for: viewModelSpy, file: file, line: line)
         trackForMemoryLeaks(for: delegateSpy, file: file, line: line)
 
-        return (sut, (viewModelSpy, delegateSpy))
+        return (protocolSut, (viewModelSpy, delegateSpy))
     }
 }
 
@@ -114,7 +115,7 @@ final class ListContactViewModelSpy: ListcontactResultLoader {
 
     private(set) var loadMoviesCalled: Bool = false
     private(set) var loadMoviesCount: Int = 0
-    
+
     func loadMovies() async throws -> ContactResult {
         loadMoviesCalled = true
         loadMoviesCount += 1
@@ -126,7 +127,7 @@ final class DelegateSpy: ViewModelDelegate {
     private(set) var isLegacyCalled: Bool = false
     private(set) var isLegacyCount: Int = 0
     var expectedName: String?
-    
+
     private(set) var notNotLegacy: Bool = false
     private(set) var notNotLegacyCount: Int = 0
     var notNotLegacyName: String?
