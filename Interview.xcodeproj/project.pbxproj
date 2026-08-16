@@ -25,6 +25,8 @@
 		AA6D4C7E2D5A7BBF003096F9 /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D4C742D5A7BBF003096F9 /* Fixture.swift */; };
 		AA6D4C7F2D5A7BBF003096F9 /* ListContactServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D4C762D5A7BBF003096F9 /* ListContactServiceTests.swift */; };
 		AA6D4C802D5A7BBF003096F9 /* ListContactViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D4C782D5A7BBF003096F9 /* ListContactViewModelTests.swift */; };
+		AAD042753032087A003F9128 /* ListContactViewModelSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0427430320879003F9128 /* ListContactViewModelSpy.swift */; };
+		AAD042773032089A003F9128 /* DelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0427630320899003F9128 /* DelegateSpy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		AA6D4C782D5A7BBF003096F9 /* ListContactViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContactViewModelTests.swift; sourceTree = "<group>"; };
 		AA6D4C7C2D5A7BBF003096F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAAC1478302DFB0100EEC4F6 /* Interview.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Interview.xctestplan; sourceTree = "<group>"; };
+		AAD0427430320879003F9128 /* ListContactViewModelSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContactViewModelSpy.swift; sourceTree = "<group>"; };
+		AAD0427630320899003F9128 /* DelegateSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +216,8 @@
 		AA6D4C752D5A7BBF003096F9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				AAD0427630320899003F9128 /* DelegateSpy.swift */,
+				AAD0427430320879003F9128 /* ListContactViewModelSpy.swift */,
 				AA4CBDE33027E41800BADF6C /* Tracker.swift */,
 				AA6D4C742D5A7BBF003096F9 /* Fixture.swift */,
 			);
@@ -392,10 +398,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAD042753032087A003F9128 /* ListContactViewModelSpy.swift in Sources */,
 				AA4CBDE43027E41C00BADF6C /* Tracker.swift in Sources */,
 				AA6D4C7E2D5A7BBF003096F9 /* Fixture.swift in Sources */,
 				AA6D4C7F2D5A7BBF003096F9 /* ListContactServiceTests.swift in Sources */,
 				AA6D4C802D5A7BBF003096F9 /* ListContactViewModelTests.swift in Sources */,
+				AAD042773032089A003F9128 /* DelegateSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

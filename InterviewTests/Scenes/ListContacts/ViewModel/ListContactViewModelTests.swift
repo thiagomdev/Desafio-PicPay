@@ -109,38 +109,3 @@ extension ListContactViewModelTests {
         return (protocolSut, (viewModelSpy, delegateSpy))
     }
 }
-
-final class ListContactViewModelSpy: ListcontactResultLoader {
-    var expected: ContactResult?
-
-    private(set) var loadMoviesCalled: Bool = false
-    private(set) var loadMoviesCount: Int = 0
-
-    func loadMovies() async throws -> ContactResult {
-        loadMoviesCalled = true
-        loadMoviesCount += 1
-        return expected ?? .failure(.invalidData)
-    }
-}
-
-final class DelegateSpy: ViewModelDelegate {
-    private(set) var isLegacyCalled: Bool = false
-    private(set) var isLegacyCount: Int = 0
-    var expectedName: String?
-
-    private(set) var notNotLegacy: Bool = false
-    private(set) var notNotLegacyCount: Int = 0
-    var notNotLegacyName: String?
-
-    func isLegacy(name: String) {
-        isLegacyCalled = true
-        isLegacyCount += 1
-        expectedName = name
-    }
-
-    func notNotLegacy(name: String) {
-        notNotLegacy = true
-        notNotLegacyCount += 1
-        notNotLegacyName = name
-    }
-}
