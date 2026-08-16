@@ -164,9 +164,10 @@ extension ListContactsViewController: UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(
             withIdentifier: ContactCell.identifier,
             for: indexPath) as? ContactCell {
-            if let model = viewModel.model.first(where: { $0.id == indexPath.row }) {
-                cell.setup(cell: model)
-            }
+
+            let model = viewModel.model[indexPath.row]
+            cell.setup(cell: model)
+            
             return cell
         }
         return UITableViewCell()
