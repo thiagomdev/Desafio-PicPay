@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41A26E9B1A20F09B13993FE6 /* FactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F3237E8D92F7EB687283DD /* FactoryTests.swift */; };
+		6F23DB6D6D6C25A73E9E2B1F /* ContactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF66C4A7E6346BF536E51B3 /* ContactTests.swift */; };
+		8661B24BAE99FC7A35A9CA96 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD81ECAA8EE1DE351BB22AB /* URLSessionHTTPClientTests.swift */; };
 		AA4CBDE43027E41C00BADF6C /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4CBDE33027E41800BADF6C /* Tracker.swift */; };
 		AA6D4C652D5A7BBF003096F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA6D4C5D2D5A7BBF003096F9 /* Assets.xcassets */; };
 		AA6D4C672D5A7BBF003096F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA6D4C602D5A7BBF003096F9 /* LaunchScreen.storyboard */; };
@@ -27,6 +30,8 @@
 		AA6D4C802D5A7BBF003096F9 /* ListContactViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D4C782D5A7BBF003096F9 /* ListContactViewModelTests.swift */; };
 		AAD042753032087A003F9128 /* ListContactViewModelSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0427430320879003F9128 /* ListContactViewModelSpy.swift */; };
 		AAD042773032089A003F9128 /* DelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0427630320899003F9128 /* DelegateSpy.swift */; };
+		B1A141E00AF56A1B813962B8 /* UserIdsLegacyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D2F4670242B31778CCDE8 /* UserIdsLegacyTests.swift */; };
+		D2C2D010300E7DF5389DE4E4 /* ContactCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67B8916036831ED4E3D58B2 /* ContactCellTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +45,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1FD81ECAA8EE1DE351BB22AB /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
+		29F3237E8D92F7EB687283DD /* FactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoryTests.swift; sourceTree = "<group>"; };
 		6AB24DBC23EB546D00530BA5 /* Interview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Interview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AB24DD223EB546F00530BA5 /* InterviewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InterviewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EF66C4A7E6346BF536E51B3 /* ContactTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTests.swift; sourceTree = "<group>"; };
+		A67B8916036831ED4E3D58B2 /* ContactCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCellTests.swift; sourceTree = "<group>"; };
 		AA4CBDE33027E41800BADF6C /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		AA6D4C492D5A7BBF003096F9 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		AA6D4C4A2D5A7BBF003096F9 /* UserIdsLegacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIdsLegacy.swift; sourceTree = "<group>"; };
@@ -65,6 +74,7 @@
 		AAAC1478302DFB0100EEC4F6 /* Interview.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Interview.xctestplan; sourceTree = "<group>"; };
 		AAD0427430320879003F9128 /* ListContactViewModelSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContactViewModelSpy.swift; sourceTree = "<group>"; };
 		AAD0427630320899003F9128 /* DelegateSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateSpy.swift; sourceTree = "<group>"; };
+		CE0D2F4670242B31778CCDE8 /* UserIdsLegacyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIdsLegacyTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +95,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A83FBEF8B1E0F8415C629AC /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				8EF66C4A7E6346BF536E51B3 /* ContactTests.swift */,
+				CE0D2F4670242B31778CCDE8 /* UserIdsLegacyTests.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		1D0A2FA9F8F1B0139B507BCE /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				29F3237E8D92F7EB687283DD /* FactoryTests.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
 		6AB24DB323EB546D00530BA5 = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +129,22 @@
 				6AB24DD223EB546F00530BA5 /* InterviewTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6D1879DE17A2820845B2A50D /* HTTPClient */ = {
+			isa = PBXGroup;
+			children = (
+				1FD81ECAA8EE1DE351BB22AB /* URLSessionHTTPClientTests.swift */,
+			);
+			path = HTTPClient;
+			sourceTree = "<group>";
+		};
+		9EE9D0E96589ACE660F12591 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				6D1879DE17A2820845B2A50D /* HTTPClient */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		AA6D4C4B2D5A7BBF003096F9 /* Domain */ = {
@@ -246,6 +289,9 @@
 				AA6D4C752D5A7BBF003096F9 /* Helpers */,
 				AA6D4C772D5A7BBF003096F9 /* Service */,
 				AA6D4C792D5A7BBF003096F9 /* ViewModel */,
+				CA6C99843A53872A3A14097C /* UI */,
+				0A83FBEF8B1E0F8415C629AC /* Domain */,
+				1D0A2FA9F8F1B0139B507BCE /* Factory */,
 			);
 			path = ListContacts;
 			sourceTree = "<group>";
@@ -262,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				AA6D4C7B2D5A7BBF003096F9 /* Scenes */,
+				9EE9D0E96589ACE660F12591 /* Shared */,
 				AA6D4C7C2D5A7BBF003096F9 /* Info.plist */,
 			);
 			path = InterviewTests;
@@ -274,6 +321,14 @@
 				AA6D4C522D5A7BBF003096F9 /* HTTPClient */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		CA6C99843A53872A3A14097C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A67B8916036831ED4E3D58B2 /* ContactCellTests.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,6 +459,11 @@
 				AA6D4C7F2D5A7BBF003096F9 /* ListContactServiceTests.swift in Sources */,
 				AA6D4C802D5A7BBF003096F9 /* ListContactViewModelTests.swift in Sources */,
 				AAD042773032089A003F9128 /* DelegateSpy.swift in Sources */,
+				D2C2D010300E7DF5389DE4E4 /* ContactCellTests.swift in Sources */,
+				6F23DB6D6D6C25A73E9E2B1F /* ContactTests.swift in Sources */,
+				B1A141E00AF56A1B813962B8 /* UserIdsLegacyTests.swift in Sources */,
+				41A26E9B1A20F09B13993FE6 /* FactoryTests.swift in Sources */,
+				8661B24BAE99FC7A35A9CA96 /* URLSessionHTTPClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
