@@ -32,13 +32,17 @@ final class ListContactServiceTests: XCTestCase {
         let clientError = NSError(domain: "Test", code: -999)
         mock.stub(error: clientError)
 
-        do {
-            _ = try await sut.loadMovies()
-            XCTFail("Expected error to be thrown")
-        } catch let error as NSError {
-            XCTAssertEqual(error.domain, clientError.domain)
-            XCTAssertEqual(error.code, clientError.code)
-        }
+        await expect(sut, toThrow: clientError)
+    }
+
+    func test_load_delivers_invalidData_on_invalidURL() async throws {
+        let (sut, mock) = makeSut(url: "")
+        mock.stub(result: .success(makeItemsJSON([]), makeResponse(statusCode: 200)))
+
+        let result = try await sut.loadMovies()
+
+        expect(result, toEqual: failure(.invalidData))
+        XCTAssertTrue(mock.requestedURLs.isEmpty, "Should not perform a request when the URL is invalid")
     }
 
     func test_load_delivers_error_on_Non_200_HTTPResponse() async throws {
@@ -81,27 +85,11 @@ final class ListContactServiceTests: XCTestCase {
         expect(result, toEqual: .success([item1.model, item2.model]))
     }
 
-    func test_load_does_not_deliver_result_after_SUT_instance_has_been_deallocated() async throws {
-        let (sut, mock) = makeSut()
-        mock.stub(result: .success(makeItemsJSON([]), makeResponse(statusCode: 200)))
-
-        let result = try await sut.loadMovies()
-
-        XCTAssertNotNil(result)
-    }
-
     func test_load_throws_on_client_failure_result() async {
         let (sut, mock) = makeSut()
         mock.stub(result: .failure(.invalidData))
 
-        do {
-            _ = try await sut.loadMovies()
-            XCTFail("Expected error to be thrown")
-        } catch let error as Interview.Error {
-            XCTAssertEqual(error, .invalidData)
-        } catch {
-            XCTFail("Unexpected error type: \(error)")
-        }
+        await expect(sut, toThrow: Interview.Error.invalidData)
     }
 }
 
@@ -136,6 +124,21 @@ extension ListContactServiceTests {
 
     private func failure(_ error: Interview.Error) -> ContactResult {
         return .failure(error)
+    }
+
+    private func expect<T: Swift.Error & Equatable>(
+        _ sut: ContactService,
+        toThrow expectedError: T,
+        file: StaticString = #file,
+        line: UInt = #line) async {
+        do {
+            _ = try await sut.loadMovies()
+            XCTFail("Expected error to be thrown", file: file, line: line)
+        } catch let error as T {
+            XCTAssertEqual(error, expectedError, file: file, line: line)
+        } catch {
+            XCTFail("Unexpected error type: \(error)", file: file, line: line)
+        }
     }
 
     private func makeItemsJSON(_ items: [[String: Any]]) -> Data {
