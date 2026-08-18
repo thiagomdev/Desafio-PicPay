@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		41A26E9B1A20F09B13993FE6 /* FactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F3237E8D92F7EB687283DD /* FactoryTests.swift */; };
+		51FCD26877069A2F84D72282 /* ListContactsViewModelSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE28B5E9E35D853F4CB6A10E /* ListContactsViewModelSpy.swift */; };
 		6F23DB6D6D6C25A73E9E2B1F /* ContactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF66C4A7E6346BF536E51B3 /* ContactTests.swift */; };
 		8661B24BAE99FC7A35A9CA96 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD81ECAA8EE1DE351BB22AB /* URLSessionHTTPClientTests.swift */; };
 		AA4CBDE43027E41C00BADF6C /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4CBDE33027E41800BADF6C /* Tracker.swift */; };
@@ -31,9 +32,8 @@
 		AAD042753032087A003F9128 /* ListContactViewModelSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0427430320879003F9128 /* ListContactViewModelSpy.swift */; };
 		AAD042773032089A003F9128 /* DelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0427630320899003F9128 /* DelegateSpy.swift */; };
 		B1A141E00AF56A1B813962B8 /* UserIdsLegacyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D2F4670242B31778CCDE8 /* UserIdsLegacyTests.swift */; };
-		D2C2D010300E7DF5389DE4E4 /* ContactCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67B8916036831ED4E3D58B2 /* ContactCellTests.swift */; };
-		51FCD26877069A2F84D72282 /* ListContactsViewModelSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE28B5E9E35D853F4CB6A10E /* ListContactsViewModelSpy.swift */; };
 		B82BEE631DBAE30E288C0F73 /* ListContactsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753C19D8947A27B07BC1AFB6 /* ListContactsViewControllerTests.swift */; };
+		D2C2D010300E7DF5389DE4E4 /* ContactCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67B8916036831ED4E3D58B2 /* ContactCellTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,10 +51,9 @@
 		29F3237E8D92F7EB687283DD /* FactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoryTests.swift; sourceTree = "<group>"; };
 		6AB24DBC23EB546D00530BA5 /* Interview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Interview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AB24DD223EB546F00530BA5 /* InterviewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InterviewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		753C19D8947A27B07BC1AFB6 /* ListContactsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContactsViewControllerTests.swift; sourceTree = "<group>"; };
 		8EF66C4A7E6346BF536E51B3 /* ContactTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTests.swift; sourceTree = "<group>"; };
 		A67B8916036831ED4E3D58B2 /* ContactCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCellTests.swift; sourceTree = "<group>"; };
-		EE28B5E9E35D853F4CB6A10E /* ListContactsViewModelSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContactsViewModelSpy.swift; sourceTree = "<group>"; };
-		753C19D8947A27B07BC1AFB6 /* ListContactsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContactsViewControllerTests.swift; sourceTree = "<group>"; };
 		AA4CBDE33027E41800BADF6C /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		AA6D4C492D5A7BBF003096F9 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		AA6D4C4A2D5A7BBF003096F9 /* UserIdsLegacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIdsLegacy.swift; sourceTree = "<group>"; };
@@ -79,6 +78,7 @@
 		AAD0427430320879003F9128 /* ListContactViewModelSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContactViewModelSpy.swift; sourceTree = "<group>"; };
 		AAD0427630320899003F9128 /* DelegateSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateSpy.swift; sourceTree = "<group>"; };
 		CE0D2F4670242B31778CCDE8 /* UserIdsLegacyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIdsLegacyTests.swift; sourceTree = "<group>"; };
+		EE28B5E9E35D853F4CB6A10E /* ListContactsViewModelSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContactsViewModelSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

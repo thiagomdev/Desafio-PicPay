@@ -19,7 +19,7 @@ public protocol ViewModelDelegate: AnyObject {
 }
 
 public actor ListContactsViewModel {
-    private var legacy: UserIdsLegacy?
+    private var legacy: UserIdsLegacy = .legacyIds([])
     private let service: ListcontactResultLoader
     private var dataObject = [Contact]()
     
@@ -52,7 +52,7 @@ extension ListContactsViewModel: @preconcurrency ListContactsViewModelProtocol {
     private func getContactInformation(basedOn contact: IndexPath) {
         legacy = UserIdsLegacy.legacyIds([10, 11, 12, 13])
 
-        if legacy?.value.contains(where: { $0 == didTapIndex(contact).id }) ?? false {
+        if legacy.value.contains(where: { $0 == didTapIndex(contact).id }) {
             delegate?.isLegacy(name: didTapIndex(contact).name)
         } else {
             delegate?.notNotLegacy(name: didTapIndex(contact).name)
