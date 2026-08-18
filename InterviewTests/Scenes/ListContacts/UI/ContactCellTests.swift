@@ -7,8 +7,6 @@ final class ContactCellTests: XCTestCase {
         XCTAssertEqual(ContactCell.identifier, "ContactCell", "Should derive the reuse identifier from the type name")
     }
 
-    // MARK: - init
-
     func test_init_setsSelectionStyleToNone() {
         let sut = makeSut()
 
@@ -42,8 +40,6 @@ final class ContactCellTests: XCTestCase {
         XCTAssertNil(sut.contactImage.image, "Should start without a placeholder image")
         XCTAssertNil(sut.fullnameLabel.text, "Should start without a name")
     }
-
-    // MARK: - setup
 
     func test_setup_setsFullnameLabelText() {
         let sut = makeSut()
